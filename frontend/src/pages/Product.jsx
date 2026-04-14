@@ -7,6 +7,7 @@ function Product() {
   const [product, setProduct] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [selectedSize, setSelectedSize] = useState('')
 
   useEffect(() => {
     async function loadProduct() {
@@ -46,6 +47,39 @@ function Product() {
       <h1>{product.nome}</h1>
       <p>{product.descricao}</p>
       <strong>R$ {Number(product.preco).toFixed(2)}</strong>
+        <div>
+            <h3>Selecione o tamanho</h3>
+            {product.tamanhos?.length > 0 ? (
+                <div>
+                    {product.tamanhos.map((item) => (
+                        <button
+                        key={item.id}
+                        onClick={() => setSelectedSize(item.tamanho)}
+                        disabled={item.quantidade === 0}
+                        >
+                        {item.tamanho}
+                        </button>
+                    ))}
+                </div>
+            ) : (
+                <p>Nenhum tamanho disponível.</p>
+            )}
+
+            {selectedSize && (
+                <p>
+                Tamanho selecionado: <strong>{selectedSize}</strong>
+                </p>
+            )}
+        </div>
+
+        <button disabled={!selectedSize}>
+        Adicionar ao carrinho
+        </button>
+
+        {!selectedSize && (
+          <p>Selecione um tamanho antes de adicionar ao carrinho.</p>
+        )}
+        
     </div>
   )
 }

@@ -17,7 +17,14 @@ export async function getProducts() {
 export async function getProductById(id) {
   const { data, error } = await supabase
     .from('produtos')
-    .select('*')
+    .select(`
+      *,
+      tamanhos (
+        id,
+        tamanho,
+        quantidade
+      )
+    `)
     .eq('id', id)
     .eq('ativo', true)
     .single()
