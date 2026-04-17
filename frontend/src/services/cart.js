@@ -9,6 +9,17 @@ export function saveCart(cart) {
   localStorage.setItem(CART_KEY, JSON.stringify(cart))
 }
 
+function createCartItem(product, selectedSize) {
+  return {
+    id: product.id,
+    nome: product.nome,
+    preco: product.preco,
+    imagem_url: product.imagem_url,
+    tamanho: selectedSize,
+    quantidade: 1,
+  }
+}
+
 export function addToCart(product, selectedSize) {
   const cart = getCart()
 
@@ -19,14 +30,7 @@ export function addToCart(product, selectedSize) {
   if (existingItem) {
     existingItem.quantidade += 1
   } else {
-    cart.push({
-      id: product.id,
-      nome: product.nome,
-      preco: product.preco,
-      imagem_url: product.imagem_url,
-      tamanho: selectedSize,
-      quantidade: 1,
-    })
+    cart.push(createCartItem(product, selectedSize))
   }
 
   saveCart(cart)

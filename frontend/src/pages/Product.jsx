@@ -9,6 +9,7 @@ function Product() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [selectedSize, setSelectedSize] = useState('')
+  const [feedbackMessage, setFeedbackMessage] = useState('')
 
   useEffect(() => {
     async function loadProduct() {
@@ -42,7 +43,7 @@ function Product() {
     if (!selectedSize) return
 
     addToCart(product, selectedSize)
-    alert('Produto adicionado ao carrinho!')
+    setFeedbackMessage('Produto adicionado ao carrinho com sucesso!')
   }
 
   return (
@@ -83,6 +84,8 @@ function Product() {
         <button disabled={!selectedSize} onClick={handleAddToCart}>
           Adicionar ao carrinho
         </button>
+
+        {feedbackMessage && <p>{feedbackMessage}</p>}
 
         {!selectedSize && (
           <p>Selecione um tamanho antes de adicionar ao carrinho.</p>
