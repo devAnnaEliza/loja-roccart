@@ -1,51 +1,31 @@
-import { useEffect, useState } from "react";
-import { getProducts } from "../services/products";
-import ProductCard from "../components/ProductCard";
+import { useEffect, useState } from 'react'
+
+import ProductCard from '@/features/products/components/ProductCard'
+import { getProducts } from '@/features/products/services/products'
 
 function Home() {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [products, setProducts] = useState([])
 
   useEffect(() => {
     async function loadProducts() {
-      try {
-        const data = await getProducts();
-        setProducts(data);
-      } catch (err) {
-        setError("Erro ao carregar produtos");
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
+      const data = await getProducts()
+      setProducts(data)
     }
 
-    loadProducts();
-  }, []);
-
-  if (loading) {
-    return <h1>Carregando produtos...</h1>;
-  }
-
-  if (error) {
-    return <h1>{error}</h1>;
-  }
+    loadProducts()
+  }, [])
 
   return (
-    <div>
-      <h1>StoreKit Core</h1>
+    <main className="min-h-screen bg-black p-8 text-white">
+      <h1 className="mb-8 text-4xl font-bold">StoreKit Core</h1>
 
-      {products.length === 0 ? (
-        <p>Nenhum produto encontrado.</p>
-      ) : (
-        <div>
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
-      )}
-    </div>
-  );
+      <section className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </section>
+    </main>
+  )
 }
 
-export default Home;
+export default Home
