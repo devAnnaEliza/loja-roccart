@@ -24,7 +24,7 @@ export function addToCart(product, selectedSize) {
   const cart = getCart()
 
   const existingItem = cart.find(
-    (item) => item.id === product.id && item.tamanho === selectedSize
+    (item) => item.id === product.id && item.tamanho === selectedSize,
   )
 
   if (existingItem) {
