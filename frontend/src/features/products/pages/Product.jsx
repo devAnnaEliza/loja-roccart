@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
 import { addToCart } from '@/features/cart/services/cart'
-import { getProductById } from '@/features/products/services/products'
+import { getProductById } from '@/features/products/services/products.service'
 
 function Product() {
   const { id } = useParams()
@@ -24,6 +24,8 @@ function Product() {
   if (loading) return <h1>Carregando produto...</h1>
 
   if (!product) return <h1>Produto não encontrado.</h1>
+
+  const variants = product.variants || ['Único']
 
   function handleAddToCart() {
     if (!selectedVariant) return
@@ -48,7 +50,7 @@ function Product() {
         <h3 className="mb-2 text-lg font-semibold">Selecione o tamanho</h3>
 
         <div className="flex gap-2">
-          {product.variants.map((variant) => (
+          {variants.map((variant) => (
             <button
               key={variant}
               type="button"

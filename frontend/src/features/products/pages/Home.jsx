@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
 import ProductCard from '@/features/products/components/ProductCard'
-import { getProducts } from '@/features/products/services/products'
+import { getProducts } from '@/features/products/services/products.service'
 
 function Home() {
   const [products, setProducts] = useState([])
