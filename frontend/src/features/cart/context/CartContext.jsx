@@ -10,26 +10,76 @@ export function CartProvider({ children }) {
   })
 
   useEffect(() => {
-    localStorage.setItem('storekit-cart', JSON.stringify(cartItems))
+    localStorage.setItem(
+      'storekit-cart',
+      JSON.stringify(cartItems),
+    )
   }, [cartItems])
 
   function addToCart(product, variant) {
-    const newItem = {
-      id: crypto.randomUUID(),
-      productId: product.id,
-      productName: product.name,
-      image: product.image,
-      price: product.price,
-      variantId: variant.id,
-      variantName: variant.name,
-      quantity: 1,
-    }
+    setCartItems((prev) => {
+      const existingItem = prev.find(
+        (item) =>
+          item.productId === product.id &&
+          item.variantId === variant.id,
+      )
 
-    setCartItems((prev) => [...prev, newItem])
+      if (existingItem) {
+        return prev.map((item) =>
+          item.id === existingItem.id
+            ? {
+                ...item,
+                quantity: item.quantity + 1,
+              }
+            : item,
+        )
+      }
+
+      const newItem = {
+        id: crypto.randomUUID(),
+        productId: product.id,
+        productName: product.name,
+        image: product.image,
+        price: product.price,
+        variantId: variant.id,
+        variantName: variant.name,
+        quantity: 1,
+      }
+
+      return [...prev, newItem]
+    })
   }
 
   function removeFromCart(itemId) {
-    setCartItems((prev) => prev.filter((item) => item.id !== itemId))
+    setCartItems((prev) =>
+      prev.filter((item) => item.id !== itemId),
+    )
+  }
+
+  function increaseQuantity(itemId) {
+    setCartItems((prev) =>
+      prev.map((item) =>
+        item.id === itemId
+          ? { ...item, quantity: item.quantity + 1 }
+          : item,
+      ),
+    )
+  }
+
+  function decreaseQuantity(itemId) {
+    setCartItems((prev) =>
+      prev
+        .map((item) =>
+          item.id === itemId
+            ? { ...item, quantity: item.quantity - 1 }
+            : item,
+        )
+        .filter((item) => item.quantity > 0),
+    )
+  }
+
+  function clearCart() {
+    setCartItems([])
   }
 
   const subtotal = cartItems.reduce(
@@ -43,6 +93,9 @@ export function CartProvider({ children }) {
         cartItems,
         addToCart,
         removeFromCart,
+        increaseQuantity,
+        decreaseQuantity,
+        clearCart,
         subtotal,
       }}
     >

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 import { useCart } from '@/features/cart/hooks/useCart'
 import { getProductById } from '@/features/products/services/products.service'
@@ -33,6 +33,10 @@ function Product() {
 
     addToCart(product, selectedVariant)
     setFeedbackMessage('Produto adicionado ao carrinho com sucesso!')
+
+    setTimeout(() => {
+      setFeedbackMessage('')
+    }, 3000)
   }
 
   return (
@@ -55,7 +59,10 @@ function Product() {
             <button
               key={variant.id}
               type="button"
-              onClick={() => setSelectedVariant(variant)}
+              onClick={() => {
+                setSelectedVariant(variant)
+                setFeedbackMessage('')
+              }}
               className="rounded border border-zinc-600 px-4 py-2"
             >
               {variant.name}
@@ -69,6 +76,13 @@ function Product() {
           </p>
         )}
       </section>
+
+      <Link
+        to="/cart"
+        className="mt-6 inline-block underline"
+      >
+        Ver carrinho
+      </Link>
 
       <button
         type="button"
