@@ -1,5 +1,7 @@
-import { useCart } from '@/features/cart/hooks/useCart'
+import { Link } from 'react-router-dom'
+
 import { storeConfig } from '@/config/store.config'
+import { useCart } from '@/features/cart/hooks/useCart'
 
 function CheckoutPage() {
   const { cartItems, subtotal } = useCart()
@@ -20,36 +22,77 @@ function CheckoutPage() {
   }
 
   return (
-    <main className="min-h-screen bg-black p-8 text-white">
-      <h1 className="mb-8 text-4xl font-bold">Finalizar pedido</h1>
+    <main className="px-6 py-10">
+      <section className="mb-10">
+        <p className="mb-2 text-sm uppercase tracking-[0.3em] text-zinc-500">
+          Checkout
+        </p>
+
+        <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
+          Finalizar pedido
+        </h1>
+
+        <p className="mt-4 max-w-2xl text-zinc-400">
+          Confira os itens antes de enviar o pedido pelo WhatsApp.
+        </p>
+      </section>
 
       {cartItems.length === 0 ? (
-        <p className="text-zinc-400">Seu carrinho está vazio.</p>
+        <div className="rounded-2xl border border-zinc-800 bg-zinc-950 p-8">
+          <p className="mb-6 text-zinc-400">Seu carrinho está vazio.</p>
+
+          <Link
+            to="/"
+            className="inline-flex rounded-full bg-white px-5 py-2 font-semibold text-black transition hover:bg-zinc-200"
+          >
+            Ver produtos
+          </Link>
+        </div>
       ) : (
-        <>
-          <section className="space-y-4">
+        <section className="grid gap-8 lg:grid-cols-[1fr_360px]">
+          <div className="space-y-4">
             {cartItems.map((item) => (
-              <article key={item.id} className="border-b border-zinc-700 pb-4">
+              <article
+                key={item.id}
+                className="rounded-2xl border border-zinc-800 bg-zinc-950 p-5"
+              >
                 <h2 className="text-xl font-semibold">{item.productName}</h2>
-                <p>Variação: {item.variantName}</p>
-                <p>Quantidade: {item.quantity}</p>
-                <p>R$ {Number(item.price).toFixed(2)}</p>
+
+                <div className="mt-3 space-y-1 text-sm text-zinc-400">
+                  <p>Variação: {item.variantName}</p>
+                  <p>Quantidade: {item.quantity}</p>
+                  <p>Preço unitário: R$ {Number(item.price).toFixed(2)}</p>
+                </div>
               </article>
             ))}
-          </section>
+          </div>
 
-          <p className="mt-6 text-xl font-semibold">
-            Total: R$ {subtotal.toFixed(2)}
-          </p>
+          <aside className="h-fit rounded-2xl border border-zinc-800 bg-zinc-950 p-6">
+            <h2 className="text-xl font-semibold">Resumo do pedido</h2>
 
-          <button
-            type="button"
-            onClick={handleCheckout}
-            className="mt-6 rounded bg-white px-4 py-2 text-black"
-          >
-            Finalizar pelo WhatsApp
-          </button>
-        </>
+            <div className="mt-6 border-b border-zinc-800 pb-6">
+              <div className="flex justify-between text-zinc-400">
+                <span>Total</span>
+                <span>R$ {subtotal.toFixed(2)}</span>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={handleCheckout}
+              className="mt-6 w-full rounded-full bg-white px-5 py-3 font-semibold text-black transition hover:bg-zinc-200"
+            >
+              Enviar pelo WhatsApp
+            </button>
+
+            <Link
+              to="/cart"
+              className="mt-4 block text-center text-sm text-zinc-500 underline transition hover:text-white"
+            >
+              Voltar ao carrinho
+            </Link>
+          </aside>
+        </section>
       )}
     </main>
   )

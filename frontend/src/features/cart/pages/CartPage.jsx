@@ -13,87 +13,130 @@ function CartPage() {
   } = useCart()
 
   return (
-    <main className="min-h-screen bg-black p-8 text-white">
-      <h1 className="mb-8 text-4xl font-bold">Carrinho</h1>
+    <main className="px-6 py-10">
+      <section className="mb-10">
+        <p className="mb-2 text-sm uppercase tracking-[0.3em] text-zinc-500">
+          Pedido
+        </p>
+
+        <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
+          Carrinho
+        </h1>
+
+        <p className="mt-4 max-w-2xl text-zinc-400">
+          Revise os itens selecionados antes de finalizar o pedido.
+        </p>
+      </section>
 
       {cartItems.length === 0 ? (
-        <div>
-          <p className="mb-4 text-zinc-400">Seu carrinho está vazio.</p>
-          <Link to="/" className="underline">
-            Voltar para produtos
+        <div className="rounded-2xl border border-zinc-800 bg-zinc-950 p-8">
+          <p className="mb-6 text-zinc-400">Seu carrinho está vazio.</p>
+
+          <Link
+            to="/"
+            className="inline-flex rounded-full bg-white px-5 py-2 font-semibold text-black transition hover:bg-zinc-200"
+          >
+            Ver produtos
           </Link>
         </div>
       ) : (
-        <section className="space-y-6">
-          {cartItems.map((item) => (
-            <article
-              key={item.id}
-              className="flex items-center gap-4 rounded border border-zinc-700 p-4"
-            >
-              <img
-                src={item.image}
-                alt={item.productName}
-                className="h-20 w-20 object-cover"
-              />
-
-              <div className="flex-1">
-                <h2 className="text-xl font-semibold">{item.productName}</h2>
-                <p className="text-zinc-400">Variação: {item.variantName}</p>
-                <p>R$ {Number(item.price).toFixed(2)}</p>
-              </div>
-
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => decreaseQuantity(item.id)}
-                  className="rounded border border-zinc-600 px-3 py-1"
-                >
-                  -
-                </button>
-
-                <span>{item.quantity}</span>
-
-                <button
-                  type="button"
-                  onClick={() => increaseQuantity(item.id)}
-                  className="rounded border border-zinc-600 px-3 py-1"
-                >
-                  +
-                </button>
-              </div>
-
-              <button
-                type="button"
-                onClick={() => removeFromCart(item.id)}
-                className="text-sm text-red-400"
+        <section className="grid gap-8 lg:grid-cols-[1fr_360px]">
+          <div className="space-y-4">
+            {cartItems.map((item) => (
+              <article
+                key={item.id}
+                className="grid gap-4 rounded-2xl border border-zinc-800 bg-zinc-950 p-4 sm:grid-cols-[96px_1fr_auto] sm:items-center"
               >
-                Remover
-              </button>
-            </article>
-          ))}
+                <img
+                  src={item.image}
+                  alt={item.productName}
+                  className="h-24 w-24 rounded-xl object-cover"
+                />
 
-          <div className="border-t border-zinc-700 pt-6">
-            <p className="text-xl font-semibold">
-              Subtotal: R$ {subtotal.toFixed(2)}
-            </p>
+                <div>
+                  <h2 className="text-xl font-semibold">
+                    {item.productName}
+                  </h2>
 
-            <div className="mt-4 flex gap-4">
-              <button
-                type="button"
-                onClick={clearCart}
-                className="rounded border border-zinc-600 px-4 py-2"
-              >
-                Limpar carrinho
-              </button>
+                  <p className="mt-1 text-sm text-zinc-400">
+                    Variação: {item.variantName}
+                  </p>
 
-              <Link
-                to="/checkout"
-                className="rounded bg-white px-4 py-2 text-black"
-                >
-                Finalizar pedido
-              </Link>
-            </div>
+                  <p className="mt-2 font-medium">
+                    R$ {Number(item.price).toFixed(2)}
+                  </p>
+                </div>
+
+                <div className="flex flex-wrap items-center gap-3 sm:justify-end">
+                  <div className="flex items-center rounded-full border border-zinc-700">
+                    <button
+                      type="button"
+                      onClick={() => decreaseQuantity(item.id)}
+                      className="px-4 py-2 text-zinc-300 transition hover:text-white"
+                    >
+                      -
+                    </button>
+
+                    <span className="min-w-8 text-center">
+                      {item.quantity}
+                    </span>
+
+                    <button
+                      type="button"
+                      onClick={() => increaseQuantity(item.id)}
+                      className="px-4 py-2 text-zinc-300 transition hover:text-white"
+                    >
+                      +
+                    </button>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() => removeFromCart(item.id)}
+                    className="text-sm text-zinc-500 underline transition hover:text-red-400"
+                  >
+                    Remover
+                  </button>
+                </div>
+              </article>
+            ))}
           </div>
+
+          <aside className="h-fit rounded-2xl border border-zinc-800 bg-zinc-950 p-6">
+            <h2 className="text-xl font-semibold">Resumo</h2>
+
+            <div className="mt-6 space-y-3 border-b border-zinc-800 pb-6">
+              <div className="flex justify-between text-zinc-400">
+                <span>Subtotal</span>
+                <span>R$ {subtotal.toFixed(2)}</span>
+              </div>
+
+              <div className="flex justify-between text-zinc-400">
+                <span>Entrega</span>
+                <span>A combinar</span>
+              </div>
+            </div>
+
+            <div className="mt-6 flex justify-between text-xl font-semibold">
+              <span>Total</span>
+              <span>R$ {subtotal.toFixed(2)}</span>
+            </div>
+
+            <Link
+              to="/checkout"
+              className="mt-6 flex w-full justify-center rounded-full bg-white px-5 py-3 font-semibold text-black transition hover:bg-zinc-200"
+            >
+              Finalizar pedido
+            </Link>
+
+            <button
+              type="button"
+              onClick={clearCart}
+              className="mt-4 w-full text-sm text-zinc-500 underline transition hover:text-red-400"
+            >
+              Limpar carrinho
+            </button>
+          </aside>
         </section>
       )}
     </main>

@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
 
+import { storeConfig } from '@/config/store.config'
 import ProductCard from '@/features/products/components/ProductCard'
 import { getProducts } from '@/features/products/services/products.service'
-import { storeConfig } from '@/config/store.config'
 
 function Home() {
   const [products, setProducts] = useState([])
@@ -18,10 +17,20 @@ function Home() {
   }, [])
 
   return (
-    <main className="min-h-screen bg-black p-8 text-white">
-      <h1 className="mb-8 text-4xl font-bold">
-        {storeConfig.name}
-      </h1>
+    <main className="px-6 py-10">
+      <section className="mb-10">
+        <p className="mb-2 text-sm uppercase tracking-[0.3em] text-zinc-500">
+          Catálogo
+        </p>
+
+        <h1 className="max-w-2xl text-4xl font-bold tracking-tight sm:text-5xl">
+          {storeConfig.name}
+        </h1>
+
+        <p className="mt-4 max-w-2xl text-zinc-400">
+          Produtos selecionados com compra rápida e atendimento direto pelo WhatsApp.
+        </p>
+      </section>
 
       <section className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {products.map((product) => (
