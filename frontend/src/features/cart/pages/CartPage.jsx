@@ -86,12 +86,12 @@ function CartPage() {
                 Limpar carrinho
               </button>
 
-              <button
-                type="button"
+              <Link
+                to="/checkout"
                 className="rounded bg-white px-4 py-2 text-black"
-              >
+                >
                 Finalizar pedido
-              </button>
+              </Link>
             </div>
           </div>
         </section>
