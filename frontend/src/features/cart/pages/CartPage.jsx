@@ -13,28 +13,28 @@ function CartPage() {
   } = useCart()
 
   return (
-    <main className="px-6 py-10">
+    <main className="py-8 sm:py-10">
       <section className="mb-10">
-        <p className="mb-2 text-sm uppercase tracking-[0.3em] text-zinc-500">
+        <p className="mb-2 text-sm uppercase tracking-[0.3em] text-slate-500">
           Pedido
         </p>
 
-        <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
+        <h1 className="text-3xl font-bold tracking-tight text-slate-50 sm:text-5xl">
           Carrinho
         </h1>
 
-        <p className="mt-4 max-w-2xl text-zinc-400">
+        <p className="mt-4 max-w-2xl text-base leading-7 text-slate-400">
           Revise os itens selecionados antes de finalizar o pedido.
         </p>
       </section>
 
       {cartItems.length === 0 ? (
-        <div className="rounded-2xl border border-zinc-800 bg-zinc-950 p-8">
-          <p className="mb-6 text-zinc-400">Seu carrinho está vazio.</p>
+        <div className="rounded-3xl border border-white/10 bg-white/3 p-6 shadow-2xl shadow-black/20 sm:p-8">
+          <p className="mb-6 text-slate-400">Seu carrinho está vazio.</p>
 
           <Link
             to="/"
-            className="inline-flex rounded-full bg-white px-5 py-2 font-semibold text-black transition hover:bg-zinc-200"
+            className="inline-flex rounded-full bg-white px-5 py-2 font-semibold text-black! transition hover:bg-zinc-200"
           >
             Ver produtos
           </Link>
@@ -45,46 +45,46 @@ function CartPage() {
             {cartItems.map((item) => (
               <article
                 key={item.id}
-                className="grid gap-4 rounded-2xl border border-zinc-800 bg-zinc-950 p-4 sm:grid-cols-[96px_1fr_auto] sm:items-center"
+                className="grid gap-4 rounded-3xl border border-white/10 bg-white/3 p-4 shadow-2xl shadow-black/20 sm:grid-cols-[96px_1fr] lg:grid-cols-[96px_1fr_auto]"
               >
                 <img
                   src={item.image}
                   alt={item.productName}
-                  className="h-24 w-24 rounded-xl object-cover"
+                  className="h-24 w-24 rounded-2xl object-cover"
                 />
 
                 <div>
-                  <h2 className="text-xl font-semibold">
+                  <h2 className="text-lg font-semibold text-slate-50">
                     {item.productName}
                   </h2>
 
-                  <p className="mt-1 text-sm text-zinc-400">
+                  <p className="mt-1 text-sm text-slate-400">
                     Variação: {item.variantName}
                   </p>
 
-                  <p className="mt-2 font-medium">
+                  <p className="mt-2 font-medium text-slate-100">
                     R$ {Number(item.price).toFixed(2)}
                   </p>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-3 sm:justify-end">
-                  <div className="flex items-center rounded-full border border-zinc-700">
+                <div className="flex flex-wrap items-center gap-3 sm:col-span-2 lg:col-span-1 lg:justify-end">
+                  <div className="flex items-center rounded-full border border-white/10 bg-white/3">
                     <button
                       type="button"
                       onClick={() => decreaseQuantity(item.id)}
-                      className="px-4 py-2 text-zinc-300 transition hover:text-white"
+                      className="px-4 py-2 text-slate-300 transition hover:text-white"
                     >
                       -
                     </button>
 
-                    <span className="min-w-8 text-center">
+                    <span className="min-w-8 text-center text-slate-50">
                       {item.quantity}
                     </span>
 
                     <button
                       type="button"
                       onClick={() => increaseQuantity(item.id)}
-                      className="px-4 py-2 text-zinc-300 transition hover:text-white"
+                      className="px-4 py-2 text-slate-300 transition hover:text-white"
                     >
                       +
                     </button>
@@ -93,7 +93,7 @@ function CartPage() {
                   <button
                     type="button"
                     onClick={() => removeFromCart(item.id)}
-                    className="text-sm text-zinc-500 underline transition hover:text-red-400"
+                    className="text-sm text-slate-500 underline transition hover:text-red-300"
                   >
                     Remover
                   </button>
@@ -102,29 +102,29 @@ function CartPage() {
             ))}
           </div>
 
-          <aside className="h-fit rounded-2xl border border-zinc-800 bg-zinc-950 p-6">
-            <h2 className="text-xl font-semibold">Resumo</h2>
+          <aside className="h-fit rounded-3xl border border-white/10 bg-white/4 p-6 shadow-2xl shadow-black/20 lg:sticky lg:top-28">
+            <h2 className="text-xl font-semibold text-slate-50">Resumo</h2>
 
-            <div className="mt-6 space-y-3 border-b border-zinc-800 pb-6">
-              <div className="flex justify-between text-zinc-400">
+            <div className="mt-6 space-y-3 border-b border-white/10 pb-6">
+              <div className="flex justify-between text-slate-400">
                 <span>Subtotal</span>
                 <span>R$ {subtotal.toFixed(2)}</span>
               </div>
 
-              <div className="flex justify-between text-zinc-400">
+              <div className="flex justify-between text-slate-400">
                 <span>Entrega</span>
                 <span>A combinar</span>
               </div>
             </div>
 
-            <div className="mt-6 flex justify-between text-xl font-semibold">
+            <div className="mt-6 flex justify-between text-xl font-semibold text-slate-50">
               <span>Total</span>
               <span>R$ {subtotal.toFixed(2)}</span>
             </div>
 
             <Link
               to="/checkout"
-              className="mt-6 flex w-full justify-center rounded-full bg-white px-5 py-3 font-semibold text-black transition hover:bg-zinc-200"
+              className="mt-6 flex w-full justify-center rounded-full bg-white px-5 py-3 font-semibold text-black! transition hover:bg-zinc-200"
             >
               Finalizar pedido
             </Link>
@@ -132,7 +132,7 @@ function CartPage() {
             <button
               type="button"
               onClick={clearCart}
-              className="mt-4 w-full text-sm text-zinc-500 underline transition hover:text-red-400"
+              className="mt-4 w-full text-sm text-slate-500 underline transition hover:text-red-300"
             >
               Limpar carrinho
             </button>

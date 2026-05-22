@@ -42,21 +42,29 @@ function Home() {
       </section>
 
       {loading && (
-        <p className="rounded-2xl border border-zinc-800 bg-zinc-950 p-6 text-zinc-400">
-          Carregando produtos...
-        </p>
+        <div className="rounded-3xl border border-white/10 bg-white/3 p-8 shadow-2xl shadow-black/20">
+          <p className="text-slate-400">Carregando produtos...</p>
+        </div>
       )}
 
       {!loading && error && (
-        <p className="rounded-2xl border border-red-900 bg-red-950/30 p-6 text-red-300">
-          {error}
-        </p>
+        <div className="rounded-3xl border border-red-500/20 bg-red-500/10 p-8 shadow-2xl shadow-black/20">
+          <p className="font-medium text-red-200">{error}</p>
+          <p className="mt-2 text-sm text-red-200/70">
+            Verifique se a API está rodando e tente novamente.
+          </p>
+        </div>
       )}
 
       {!loading && !error && products.length === 0 && (
-        <p className="rounded-2xl border border-zinc-800 bg-zinc-950 p-6 text-zinc-400">
-          Nenhum produto cadastrado no momento.
-        </p>
+        <div className="rounded-3xl border border-white/10 bg-white/3 p-8 shadow-2xl shadow-black/20">
+          <p className="font-medium text-slate-200">
+            Nenhum produto disponível.
+          </p>
+          <p className="mt-2 text-sm text-slate-500">
+            Os produtos cadastrados aparecerão aqui automaticamente.
+          </p>
+        </div>
       )}
 
       {!loading && !error && products.length > 0 && (
