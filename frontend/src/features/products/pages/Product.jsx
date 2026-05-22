@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
 import { useCart } from '@/features/cart/hooks/useCart'
 import { getProductById } from '@/features/products/services/products.service'
@@ -76,13 +76,6 @@ function Product() {
           </p>
         )}
       </section>
-
-      <Link
-        to="/cart"
-        className="mt-6 inline-block underline"
-      >
-        Ver carrinho
-      </Link>
 
       <button
         type="button"

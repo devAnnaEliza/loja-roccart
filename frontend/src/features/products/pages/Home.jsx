@@ -23,13 +23,6 @@ function Home() {
         {storeConfig.name}
       </h1>
 
-      <Link
-        to="/cart"
-        className="mb-8 inline-block underline"
-      >
-        Ver carrinho
-      </Link>
-
       <section className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />
