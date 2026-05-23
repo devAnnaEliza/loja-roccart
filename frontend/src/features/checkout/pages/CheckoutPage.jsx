@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 
-import { storeConfig } from '../../../config/store/store.config'
+import { storeConfig } from '@/config/store/store.config'
 import { useCart } from '@/features/cart/hooks/useCart'
 
 function CheckoutPage() {
@@ -63,10 +63,7 @@ function CheckoutPage() {
                 <div className="mt-3 space-y-1 text-sm leading-6 text-slate-400">
                   <p>Variação: {item.variantName}</p>
                   <p>Quantidade: {item.quantity}</p>
-                  <p>
-                    Preço unitário: R${' '}
-                    {Number(item.price).toFixed(2)}
-                  </p>
+                  <p>Preço unitário: R$ {Number(item.price).toFixed(2)}</p>
                 </div>
               </article>
             ))}
