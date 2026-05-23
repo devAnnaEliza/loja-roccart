@@ -35,6 +35,4 @@ app.include_router(products_router)
 
 @app.get("/")
 def root():
-    return {
-        "message": "StoreKit Core API online"
-    }
+    return {"message": "StoreKit Core API online"}
