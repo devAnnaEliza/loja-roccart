@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 
-import { storeConfig } from '../../../config/store/store.config'
-import ProductCard from '@/features/products/components/ProductCard'
+import { homeConfig } from '../../../config/store/home.config'
 import { getProducts } from '@/features/products/services/products.service'
+import ProductCard from '@/features/products/components/ProductCard'
 
 function Home() {
   const [products, setProducts] = useState([])
@@ -28,16 +28,15 @@ function Home() {
     <main className="px-6 py-10">
       <section className="mb-10">
         <p className="mb-2 text-sm uppercase tracking-[0.3em] text-zinc-500">
-          Catálogo
+          {homeConfig.hero.eyebrow}
         </p>
 
         <h1 className="max-w-2xl text-4xl font-bold tracking-tight sm:text-5xl">
-          {storeConfig.brand.name}
+          {homeConfig.hero.title}
         </h1>
 
         <p className="mt-4 max-w-2xl text-zinc-400">
-          Produtos selecionados com compra rápida e atendimento direto pelo
-          WhatsApp.
+          {homeConfig.hero.description}
         </p>
       </section>
 
