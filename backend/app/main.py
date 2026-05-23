@@ -1,3 +1,5 @@
+import os
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -13,9 +15,12 @@ app = FastAPI(
     version="0.1.0",
 )
 
+FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:5173")
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
+        FRONTEND_URL,
         "http://localhost:5173",
     ],
     allow_credentials=True,
@@ -26,3 +31,10 @@ app.add_middleware(
 app.include_router(health_router)
 app.include_router(db_router)
 app.include_router(products_router)
+
+
+@app.get("/")
+def root():
+    return {
+        "message": "StoreKit Core API online"
+    }
