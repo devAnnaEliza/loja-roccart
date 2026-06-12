@@ -1,10 +1,10 @@
 import { themeConfig } from '../theme/theme.config'
 import { ecosystemConfig } from '../ecosystem/ecosystem.config'
-import logoRoccart from '../../assets/roccart/logo-colorida.PNG'
+import logoRoccart from '../../assets/roccart/logo-colorida-cortada.PNG'
 
 export const storeConfig = {
   brand: {
-    name: 'Roccart',
+    name: 'Cia. Roccart',
     tagline: '',
     description:
       'Camisetas autorais criadas para expressar fé, arte e identidade com elegância.',

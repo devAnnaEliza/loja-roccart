@@ -17,15 +17,15 @@ function StoreLayout() {
               <img
                 src={storeConfig.brand.logo}
                 alt={storeConfig.brand.name}
-                className="h-16 w-auto object-contain"
+                className="h-14 w-auto object-contain"
               />
             )}
 
             <div>
-              <span className="block text-lg font-bold tracking-tight text-[#00174e] sm:text-xl">
+              <span className="font-ui block text-lg font-semibold tracking-[0.08em] text-[#00174e] sm:text-xl">
                 {storeConfig.brand.name}
               </span>
-              <span className="hidden text-xs text-[#6e6969] sm:block">
+              <span className="font-body hidden text-xs tracking-[0.15em] text-[#6e6969] sm:block">
                 {storeConfig.brand.tagline}
               </span>
             </div>
@@ -33,7 +33,7 @@ function StoreLayout() {
 
           <Link
             to="/cart"
-            className="rounded-full border border-[#00174e]/15 bg-[#00174e] px-4 py-2 text-sm font-medium text-white transition hover:bg-[#ea8506]"
+            className="font-ui rounded-full border border-[#00174e]/15 bg-[#00174e] px-4 py-2 text-sm font-medium text-white transition hover:bg-[#ea8506]"
           >
             Carrinho ({totalItems})
           </Link>
