@@ -1,0 +1,16 @@
+:root {
+  --color-brand-primary: #00174e;
+  --color-brand-accent: #ea8506;
+  --color-brand-muted: #6e6969;
+  --color-brand-black: #000000;
+  --color-brand-white: #ffffff;
+
+  --color-background: #fafafa;
+  --color-surface: #ffffff;
+  --color-border: rgba(0, 23, 78, 0.12);
+
+  --font-brand: "Meditative", cursive;
+  --font-heading: "Tan Garland", Georgia, serif;
+  --font-ui: "Poppins", "Montserrat", Arial, sans-serif;
+  --font-body: "Montserrat", "Poppins", Arial, sans-serif;
+}
