@@ -28,8 +28,8 @@ export default function CheckoutPage() {
   ${itemsMessage}
 
   Forma de pagamento:
-  - Dinheiro/Pix: R$ 50,00 por camisa
-  - Cartão: R$ 55,00 por camisa`
+  - Dinheiro/Pix: R$ 50,00
+  - Cartão: R$ 55,00`
   }
 
   async function handleSendOrder() {

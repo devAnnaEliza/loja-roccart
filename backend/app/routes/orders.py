@@ -79,7 +79,7 @@ def create_order(payload: OrderCreate, db: Session = Depends(get_db)):
         )
 
     order = Order(
-        order_number=f"ROC-{uuid4().hex[:4].upper()}",
+        order_number=f"ROC-{uuid4().hex[:2].upper()}",
         total=total,
         status="pending",
     )
