@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 
-import camisaCostas from '@/assets/roccart/camisa-costas.jpg'
-import camisaFrente from '@/assets/roccart/camisa-frente.jpg'
+import camisaCostas from '@/assets/roccart/camisa-costas.webp'
+import camisaFrente from '@/assets/roccart/camisa-frente.webp'
 import { useCart } from '@/features/cart/hooks/useCart'
 import { getProductById } from '@/features/products/services/products.service'
 
