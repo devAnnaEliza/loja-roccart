@@ -1,6 +1,6 @@
 import { themeConfig } from '../theme/theme.config'
 import { ecosystemConfig } from '../ecosystem/ecosystem.config'
-import logoRoccart from '../../assets/roccart/logo-branca-cortada.PNG'
+import logoRoccart from '../../assets/roccart/logo-branca-cortada.png'
 
 export const storeConfig = {
   brand: {
