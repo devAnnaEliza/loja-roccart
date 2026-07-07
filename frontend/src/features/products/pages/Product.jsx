@@ -214,11 +214,12 @@ function Product() {
                 })}
               </div>
 
-              {selectedVariant && (
-                <p className="font-body mt-4 text-sm text-white/50">
-                  {selectedStock} unidades disponíveis no tamanho{' '}
-                  {selectedVariant.name}.
-                </p>
+              {selectedVariant &&
+                selectedStock > 0 &&
+                selectedStock < 5 && (
+                  <p className="mt-3 text-sm font-medium text-[#ea8506]">
+                    Últimas unidades disponíveis neste tamanho.
+                  </p>
               )}
             </section>
           )}
