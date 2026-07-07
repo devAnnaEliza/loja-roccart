@@ -1,78 +1,75 @@
-# StoreKit Core
+# Loja Roccart
 
-StoreKit Core é uma base reutilizável de e-commerce desenvolvida para acelerar a criação de lojas online modernas com arquitetura escalável, white-label e preparada para expansão futura.
+Loja virtual desenvolvida para a CIA Roccart com o objetivo de comercializar camisetas, produtos oficiais e materiais relacionados às produções da companhia.
 
-O projeto foi pensado para:
-- entrega rápida
-- reutilização entre clientes
-- integração futura com outros módulos do ecossistema
-- manutenção simplificada
-- crescimento progressivo sem retrabalho estrutural
+O projeto foi desenvolvido utilizando como base o StoreKit Core, uma arquitetura reutilizável criada para acelerar o desenvolvimento de lojas virtuais personalizadas, recebendo nesta implementação toda a identidade visual, catálogo e configurações específicas da Roccart.
 
----
 
-# Stack
+# Objetivo
+
+Desenvolver uma plataforma simples, responsiva e de fácil utilização para que clientes possam visualizar os produtos disponíveis, selecionar variações, adicionar itens ao carrinho e concluir o pedido diretamente pelo WhatsApp.
+
+
+# Tecnologias utilizadas
 
 ## Frontend
+
 - React
 - Vite
 - Tailwind CSS
 - React Router
-- Context API
 - Axios
 
 ## Backend
+
 - FastAPI
 - SQLAlchemy
-- PostgreSQL
+- PostgreSQL (Neon)
 - Alembic
-- Neon
 
----
 
-# Funcionalidades atuais
+# Funcionalidades
 
 - Catálogo de produtos
-- Página individual de produto
-- Variantes
-- Carrinho multi-produto
-- Persistência local
+- Produto em destaque na página inicial
+- Página individual de produtos
+- Variações por tamanho
+- Controle de estoque
+- Carrinho de compras
+- Persistência local do carrinho
 - Checkout via WhatsApp
-- White-label básico
-- Responsividade
-- Estrutura modular
-- Integração frontend/backend
+- Integração entre frontend e backend
+- Layout totalmente responsivo
 
----
 
 # Estrutura do projeto
 
-```txt
-storekit-core/
+```text
+loja-roccart/
 ├── frontend/
 ├── backend/
 └── README.md
 ```
 
----
+# Organização
 
-# Arquitetura
+### Frontend
 
-## Frontend
-
-```txt
+```text
 src/
+├── app/
+├── assets/
 ├── components/
 ├── config/
 ├── features/
 ├── layouts/
-├── styles/
-└── utils/
+├── lib/
+└── styles/
 ```
 
-## Backend
+### Backend
 
-```txt
+```text
 backend/
 ├── app/
 │   ├── core/
@@ -84,50 +81,9 @@ backend/
 └── requirements.txt
 ```
 
----
+## Acesse o projeto
+🧷 Loja: https://loja-roccart.vercel.app/ 
 
-# White-label
+# Licença
 
-O projeto foi estruturado para:
-- múltiplos clientes
-- customização visual
-- branding configurável
-- integração futura com Landing Core
-- expansão modular sem acoplamento excessivo
-
----
-
-# Roadmap futuro
-
-- Painel administrativo
-- Upload de imagens
-- Gateway de pagamento
-- Gestão de pedidos
-- Autenticação
-- Estoque avançado
-- Multi-tenant
-- Analytics
-
----
-
-# Executando o frontend
-
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
-# Executando o backend
-
-```bash
-cd backend
-pip install -r requirements.txt
-uvicorn app.main:app --reload
-```
-
----
-
-# Status
-
-Demo comercializável em desenvolvimento.
+Projeto desenvolvido exclusivamente para a CIA Roccart.
